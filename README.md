@@ -1,3 +1,3 @@
 # CalcEvent
 
-https://jagpotato.github.io/CalcEvent/
+https://jagpotato.github.io/calc-event/
