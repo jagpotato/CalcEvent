@@ -3,21 +3,36 @@
 <head>
   <title>CalcEvent</title>
   <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"> -->
+  <!-- <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css"> -->
+  <link rel="stylesheet" href="css/milligram.min.css">
+  <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="js/calc.js"></script>
 </head>
 <body>
-  <form>
-    <p>目標ポイント</p>
-    <input type="number" id="finishPoint" value="70000">
-    <br>
-    <p>累計ポイント</p>
-    <input type="number" id="numPoint" value="0">
-    <br>
-    <p>所持アイテム</p>
-    <input type="number" id="numItem" value="0">
-    <br>
-    <input type="button" value="submit" onclick="calc();">
-  </form>
-
+  <div class="container">
+    <div class="row">
+      <div class="column column-10"></div>
+      <div class="column column-80">
+        <h1>calc-event</h1>
+      </div>
+      <div class="column column-10"></div>
+    </div>
+    <div class="row">
+      <div class="column column-10"></div>
+      <div class="column column-80">
+        <form>
+          <label for="finishPoint">目標ポイント</label>
+          <input type="number" id="finishPoint" value="70000">
+          <label for="numPoint">累計ポイント</label>
+          <input type="number" id="numPoint" value="0">
+          <label for="numItem">所持アイテム</label>
+          <input type="number" id="numItem" value="0">
+          <input type="button" class="button button-outline" value="submit" onclick="calc();">
+        </form>
+      </div>
+      <div class="column column-10"></div>
+    </div>
+  </div>
 </body>
 </html>
