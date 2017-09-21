@@ -6,7 +6,6 @@ function calc() {
   const GET_ITEM = 53;
   const USE_ITEM = 150;
   const USE_STAMINA = 19;
-  const MAX_STAMINA = 82;
   const LIVE_TIME_SECOND = 180;
   const MINUTE = 60;
   const HOUR = MINUTE * 60;
