@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="css/milligram.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script type="text/javascript" src="js/calc.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div id="app" class="container">
     <div class="row">
       <div class="column column-10"></div>
       <div class="column column-80">
@@ -29,7 +28,7 @@
           <input type="number" id="numPoint" value="0" max="9999999999">
           <label for="numItem">所持アイテム</label>
           <input type="number" id="numItem" value="0" max="9999999999">
-          <!-- <input type="button" class="button button-outline" value="submit" onclick="calc();"> -->
+          <input type="button" class="button button-outline" value="計算" v-on:click="test">
         </form>
       </div>
       <div class="column column-20"></div>
@@ -37,7 +36,28 @@
     <div class="row">
       <div class="column column-20"></div>
       <div class="column column-60">
-        <table id="result"></table>
+        <table id="result">
+          <tr>
+            <td>通常ライブ数</td>
+            <td v-text="normalLiveNum"></td>
+          </tr>
+          <tr>
+            <td>イベントライブ数</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>必要イベントアイテム数</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>必要スタミナ</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>必要時間</td>
+            <td></td>
+          </tr>
+        </table>
       </div>
       <div class="column column-20"></div>
     </div>
@@ -45,5 +65,6 @@
   <a href="https://jagpotato.github.io/calc-event/">
   <img src="https://ga-beacon.appspot.com/UA-101660695-2/jagpotato.github.io/calc-event/?pixel"/>
 </a>
+  <script type="text/javascript" src="build/main.js"></script>
 </body>
 </html>
