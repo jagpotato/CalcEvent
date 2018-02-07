@@ -60,12 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
-/* 1 */
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75,11 +74,65 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _class = function _class() {
-  _classCallCheck(this, _class);
-};
+var _class = function () {
+  function _class(livePoint, item) {
+    _classCallCheck(this, _class);
+
+    this.livePoint = livePoint;
+    this.item = item;
+    this.minute = 60;
+    this.hour = this.minute * 60;
+    this.day = this.hour * 24;
+  }
+
+  _createClass(_class, [{
+    key: "calcRequireLiveNum",
+    value: function calcRequireLiveNum(finishPoint, currentPoint, currentItem) {
+      var requireLiveNum = { normal: 0, event: 0 };
+      var getPoint = currentPoint;
+      while (getPoint < finishPoint) {
+        if (currentItem >= this.item.use) {
+          getPoint += this.livePoint.event;
+          currentItem -= this.item.use;
+          requireLiveNum.event++;
+        } else {
+          getPoint += this.livePoint.normal;
+          currentItem += this.item.get;
+          requireLiveNum.normal++;
+        }
+      }
+      return requireLiveNum;
+    }
+  }, {
+    key: "calcRequireTime",
+    value: function calcRequireTime(requireLiveNum, playLiveTime) {
+      var requireTime = {};
+      requireTime.day = 0;
+      requireTime.hour = 0;
+      requireTime.minute = 0;
+      requireTime.second = (requireLiveNum.normal + requireLiveNum.event) * playLiveTime;
+      while (requireTime.second >= this.day) {
+        requireTime.second -= this.day;
+        requireTime.day++;
+      }
+      while (requireTime.second >= this.hour) {
+        requireTime.second -= this.hour;
+        requireTime.hour++;
+      }
+      while (requireTime.second >= this.minute) {
+        requireTime.second -= this.minute;
+        requireTime.minute++;
+      }
+      return requireTime.day + "日" + requireTime.hour + "時間" + requireTime.minute + "分" + requireTime.second + "秒";
+    }
+  }]);
+
+  return _class;
+}();
 
 /*
 function calc() {

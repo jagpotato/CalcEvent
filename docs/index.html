@@ -23,11 +23,11 @@
       <div class="column column-60">
         <form>
           <label for="finishPoint">目標ポイント</label>
-          <input type="number" id="finishPoint" v-model="finishPoint" max="9999999999">
+          <input type="number" v-model="finishPoint" max="9999999999">
           <label for="numPoint">累計ポイント</label>
-          <input type="number" id="numPoint" v-model="numPoint" max="9999999999">
+          <input type="number" v-model="currentPoint" max="9999999999">
           <label for="numItem">所持アイテム</label>
-          <input type="number" id="numItem" v-model="numItem" max="9999999999">
+          <input type="number" v-model="currentItem" max="9999999999">
           <input type="button" class="button button-outline" value="計算" v-on:click="calc">
         </form>
       </div>
@@ -39,23 +39,23 @@
         <table id="result">
           <tr>
             <td>通常ライブ数</td>
-            <td>{{ normalLiveNum }}</td>
+            <td v-text="requireLiveNum.normal"></td>
           </tr>
           <tr>
             <td>イベントライブ数</td>
-            <td>{{ eventLiveNum }}</td>
+            <td v-text="requireLiveNum.event"></td>
           </tr>
           <tr>
             <td>必要イベントアイテム数</td>
-            <td>{{ requireEventItemNum }}</td>
+            <td v-text="requireEventItemNum"></td>
           </tr>
           <tr>
             <td>必要スタミナ</td>
-            <td>{{ requireStamina }}</td>
+            <td v-text="requireStamina"></td>
           </tr>
           <tr>
             <td>必要時間</td>
-            <td>{{ requireTime }}</td>
+            <td v-text="requireTime"></td>
           </tr>
         </table>
       </div>
