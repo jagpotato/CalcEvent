@@ -1,70 +1,91 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>デレステ イベント計算機(アタポン形式)</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-  <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-  <link rel="stylesheet" href="css/milligram.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-</head>
-<body>
-  <div id="app" class="container">
-    <div class="row">
-      <div class="column column-10"></div>
-      <div class="column column-80">
-        <h2>デレステ イベント計算機(アタポン形式)</h2>
-      </div>
-      <div class="column column-10"></div>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>デレステ イベント計算機（アタポン形式）</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <div class="navbar-item title is-4">
+            デレステ イベント計算機（アタポン形式）
+          </div>
+        </div>
+      </nav>
+      <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="field">
+                <label class="label">目標ポイント</label>
+                <div class="control">
+                  <input class="input" type="number" v-model="finishPoint">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">累計ポイント</label>
+                <div class="control">
+                  <input class="input" type="number" v-model="currentPoint">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">所持アイテム</label>
+                <div class="control">
+                  <input class="input" type="number" v-model="currentItem">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <div class="buttons has-addons is-right">
+                    <button id="calc-button" class="button is-link is-medium" v-on:click="calc">
+                      <span>計算</span>
+                      <span class="icon is-small">
+                        <i class="fas fa-check"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <table class="table is-striped is-hoverable is-fullwidth">
+                <tbody>
+                  <tr>
+                    <th>通常ライブ数</th>
+                    <td v-text="requireLiveNum.normal"></td>
+                  </tr>
+                  <tr>
+                    <th>イベントライブ数</th>
+                    <td v-text="requireLiveNum.event"></td>
+                  </tr>
+                  <tr>
+                    <th>必要イベントアイテム数</th>
+                    <td v-text="requireEventItemNum"></td>
+                  </tr>
+                  <tr>
+                    <th>必要スタミナ</th>
+                    <td v-text="requireStamina"></td>
+                  </tr>
+                  <tr>
+                    <th>必要時間</th>
+                    <td v-text="requireTime"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="row">
-      <div class="column column-20"></div>
-      <div class="column column-60">
-        <form>
-          <label for="finishPoint">目標ポイント</label>
-          <input type="number" v-model="finishPoint" max="9999999999">
-          <label for="numPoint">累計ポイント</label>
-          <input type="number" v-model="currentPoint" max="9999999999">
-          <label for="numItem">所持アイテム</label>
-          <input type="number" v-model="currentItem" max="9999999999">
-          <input type="button" class="button button-outline" value="計算" v-on:click="calc">
-        </form>
-      </div>
-      <div class="column column-20"></div>
-    </div>
-    <div class="row">
-      <div class="column column-20"></div>
-      <div class="column column-60">
-        <table id="result">
-          <tr>
-            <td>通常ライブ数</td>
-            <td v-text="requireLiveNum.normal"></td>
-          </tr>
-          <tr>
-            <td>イベントライブ数</td>
-            <td v-text="requireLiveNum.event"></td>
-          </tr>
-          <tr>
-            <td>必要イベントアイテム数</td>
-            <td v-text="requireEventItemNum"></td>
-          </tr>
-          <tr>
-            <td>必要スタミナ</td>
-            <td v-text="requireStamina"></td>
-          </tr>
-          <tr>
-            <td>必要時間</td>
-            <td v-text="requireTime"></td>
-          </tr>
-        </table>
-      </div>
-      <div class="column column-20"></div>
-    </div>
-  </div>
-  <a href="https://jagpotato.github.io/calc-event/">
-  <img src="https://ga-beacon.appspot.com/UA-101660695-2/jagpotato.github.io/calc-event/?pixel"/>
-</a>
-  <script type="text/javascript" src="build/main.js"></script>
-</body>
+    <a href="https://jagpotato.github.io/calc-event/">
+      <img src="https://ga-beacon.appspot.com/UA-101660695-2/jagpotato.github.io/calc-event/?pixel"/>
+    </a>
+    <script type="text/javascript" src="build/main.js"></script>
+  </body>
 </html>

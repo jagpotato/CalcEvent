@@ -7,6 +7,9 @@ export default class {
     this.day = this.hour * 24;
   }
   calcRequireLiveNum(finishPoint, currentPoint, currentItem) {
+    finishPoint = parseInt(finishPoint, 10);
+    currentPoint = parseInt(currentPoint, 10);
+    currentItem = parseInt(currentItem, 10);
     let requireLiveNum = {normal: 0, event: 0};
     let getPoint = currentPoint;
     while ( getPoint < finishPoint ) {
