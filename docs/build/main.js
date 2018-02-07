@@ -179,6 +179,7 @@ var app = new Vue({
     requireEventItemNum: "",
     requireStamina: "",
     requireTime: ""
+
   },
   watch: {
     finishPoint: function finishPoint() {

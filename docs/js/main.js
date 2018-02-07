@@ -26,7 +26,8 @@ const app = new Vue({
     },
     requireEventItemNum: "",
     requireStamina: "",
-    requireTime: ""
+    requireTime: "",
+    
   },
   watch: {
     finishPoint: function() {      
