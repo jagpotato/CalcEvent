@@ -17,6 +17,7 @@ const DAY = HOUR * 24;
 const app = new Vue({
   el: "#app",
   data: {
+    disabledCalcButton: false,
     finishPoint: "18000",
     currentPoint: "0",
     currentItem: "0",
@@ -31,25 +32,25 @@ const app = new Vue({
   },
   watch: {
     finishPoint: function() {      
-      document.getElementById("calc-button").disabled = false;
+      this.disabledCalcButton = false;
     },
     currentPoint: function() {      
-      document.getElementById("calc-button").disabled = false;
+      this.disabledCalcButton = false;
     },
-    currentItem: function() {      
-      document.getElementById("calc-button").disabled = false;
+    currentItem: function() {    
+      this.disabledCalcButton = false;  
     }
   },
   methods: {
     calc: function() {
-      document.getElementById("calc-button").disabled = true;
+      this.disabledCalcButton = true;
       if ( this.finishPoint > MAX_INPUT || this.currentPoint > MAX_INPUT || this.currentItem > MAX_INPUT ) {
         alert("数値は" + MAX_INPUT + "以下で入力してください");
         throw new Error("数値は" + MAX_INPUT + "以上で入力してください");
       } else if ( String(this.finishPoint).search(/^[0-9]+$/) < MIN_INPUT　|| String(this.currentPoint).search(/^[0-9]+$/) < MIN_INPUT || String(this.currentItem).search(/^[0-9]+$/) < MIN_INPUT ) {
         alert("数値は" + MIN_INPUT + "以上で入力してください");
         throw new Error("数値は" + MIN_INPUT + "以上で入力してください");
-      }      
+      }
       let calcData = new Calc({normal: GET_POINT_NORMALLIVE, event: GET_POINT_EVENTLIVE}, {get: GET_ITEM, use: USE_ITEM});
       this.requireLiveNum = calcData.calcRequireLiveNum(this.finishPoint, this.currentPoint, this.currentItem);      
       this.requireEventItemNum = this.requireLiveNum.event * USE_ITEM;
