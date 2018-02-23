@@ -169,7 +169,8 @@ var DAY = HOUR * 24;
 var app = new Vue({
   el: "#app",
   data: {
-    disabledCalcButton: false,
+    enabledCalcButton: true,
+    displayedOption: false,
     finishPoint: "18000",
     currentPoint: "0",
     currentItem: "0",
@@ -180,22 +181,24 @@ var app = new Vue({
     requireEventItemNum: "",
     requireStamina: "",
     requireTime: ""
-
   },
   watch: {
     finishPoint: function finishPoint() {
-      this.disabledCalcButton = false;
+      this.enabledCalcButton = true;
     },
     currentPoint: function currentPoint() {
-      this.disabledCalcButton = false;
+      this.enabledCalcButton = true;
     },
     currentItem: function currentItem() {
-      this.disabledCalcButton = false;
+      this.enabledCalcButton = true;
     }
   },
   methods: {
+    toggleOption: function toggleOption() {
+      this.displayedOption = !this.displayedOption;
+    },
     calc: function calc() {
-      this.disabledCalcButton = true;
+      this.enabledCalcButton = false;
       if (this.finishPoint > MAX_INPUT || this.currentPoint > MAX_INPUT || this.currentItem > MAX_INPUT) {
         alert("数値は" + MAX_INPUT + "以下で入力してください");
         throw new Error("数値は" + MAX_INPUT + "以上で入力してください");

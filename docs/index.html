@@ -7,6 +7,7 @@
     <title>デレステ イベント計算機（アタポン形式）</title>
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   </head>
   <body>
@@ -47,15 +48,43 @@
                   <input class="input" type="number" v-model="currentItem">
                 </div>
               </div>
-              <div class="field">
-                <div class="control">
-                  <div class="buttons has-addons is-right">
-                    <button id="calc-button" class="button is-link is-medium" v-bind:disabled="disabledCalcButton" v-on:click="calc">
-                      <span>計算</span>
-                      <span class="icon is-small">
-                        <i class="fas fa-calculator"></i>
-                      </span>
-                    </button>
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item">
+                    <div class="field">
+                      <div class="control">
+                        <a id="option-button" class="button is-medium" v-on:click="toggleOption">
+                          <span class="icon">
+                            <i class="fas fa-bars"></i>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <div class="field">
+                      <div class="control">
+                        <button id="calc-button" class="button is-link is-medium" v-bind:disabled="!enabledCalcButton" v-on:click="calc">
+                          <span>計算</span>
+                          <span class="icon is-small">
+                            <i class="fas fa-calculator"></i>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="option-settings" v-show="displayedOption" v-cloak>
+                <div class="field">
+                  <div class="control">
+                    <p>通常ライブ</p>
+                    <p>難易度  スコア  消費</p>
+                    <p>イベントライブ</p>
+                    <p>難易度  スコア  消費</p>
+                    <p>1曲のプレイ時間</p>
                   </div>
                 </div>
               </div>
