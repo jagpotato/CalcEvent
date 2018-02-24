@@ -2,6 +2,10 @@
 .level.is-mobile .level-item {
   margin-right: 0;
 }
+/* navbar-brandのnavbar-itemにtitleをつけると(？)下側にmarginが入る */
+.navbar .navbar-brand .navbar-item.title {
+  margin-bottom: 0;
+}
 
 [v-cloak] {
   display: none;
