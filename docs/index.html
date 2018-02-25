@@ -97,14 +97,13 @@
                   <div class="level is-mobile">
                     <div class="level-item">
                       <div class="field">
-                        <label class="label is-small">難易度</label>
+                        <label class="label is-small">スタミナ消費</label>
                         <div class="control">
                           <div class="select is-small">
-                            <select>
-                              <option>MASTER</option>
-                              <option>PRO</option>
-                              <option>REGULAR</option>
-                              <option>DEBUT</option>
+                            <select v-model="selected.normal.stamina">
+                              <option v-for="stamina in staminaList" v-bind:value="stamina">
+                                {{ stamina }}
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -112,12 +111,13 @@
                     </div>
                     <div class="level-item">
                       <div class="field">
-                        <label class="label is-small">消費</label>
+                        <label class="label is-small">消費倍率</label>
                         <div class="control">
                           <div class="select is-small">
-                            <select>
-                              <option>1倍</option>
-                              <option>2倍</option>
+                            <select v-model="selected.normal.scale">
+                              <option v-for="scaleNormal in scaleList.normal" v-bind:value="scaleNormal.value">
+                                {{ scaleNormal.text }}
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -128,11 +128,10 @@
                         <label class="label is-small">スコア</label>
                         <div class="control">
                           <div class="select is-small">
-                            <select>
-                              <option>S</option>
-                              <option>A</option>
-                              <option>B</option>
-                              <option>C</option>
+                            <select v-model="selected.normal.score">
+                              <option v-for="score in scoreList" v-bind:value="score">
+                                {{ score }}
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -146,7 +145,8 @@
                         <label class="label is-small">難易度</label>
                         <div class="control">
                           <div class="select is-small">
-                            <select>
+                            <select v-model="selected.event.difficulty">
+                              <option>MASTER+</option>
                               <option>MASTER</option>
                               <option>PRO</option>
                               <option>REGULAR</option>
@@ -158,13 +158,13 @@
                     </div>
                     <div class="level-item">
                       <div class="field">
-                        <label class="label is-small">消費</label>
+                        <label class="label is-small">消費倍率</label>
                         <div class="control">
                           <div class="select is-small">
-                            <select>
-                              <option>1倍</option>
-                              <option>2倍</option>
-                              <option>4倍</option>
+                            <select v-model="selected.event.scale">
+                              <option v-for="scaleEvent in scaleList.event" v-bind:value="scaleEvent.value">
+                                {{ scaleEvent.text }}
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -175,11 +175,10 @@
                         <label class="label is-small">スコア</label>
                         <div class="control">
                           <div class="select is-small">
-                            <select>
-                              <option>S</option>
-                              <option>A</option>
-                              <option>B</option>
-                              <option>C</option>
+                            <select v-model="selected.event.score">
+                              <option v-for="score in scoreList" v-bind:value="score">
+                                {{ score }}
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -190,11 +189,10 @@
                   <div class="field has-addons has-addons-centered">
                     <div class="control">
                       <div class="select is-small">
-                        <select>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
+                        <select v-model="selected.playTime.minutes">
+                          <option v-for="minutes in minutesList" v-bind:value="minutes">
+                            {{ minutes }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -203,8 +201,10 @@
                     </div>
                     <div class="control">
                       <div class="select is-small">
-                        <select>
-                          <option>00</option>
+                        <select v-model="selected.playTime.seconds">
+                          <option v-for="seconds in secondsList" v-bind:value="seconds">
+                            {{ seconds }}
+                          </option>
                         </select>
                       </div>
                     </div>

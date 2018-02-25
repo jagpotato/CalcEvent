@@ -170,10 +170,34 @@ var app = new Vue({
   el: "#app",
   data: {
     enabledCalcButton: true,
-    displayedOption: true,
+    displayedOption: false,
     finishPoint: "18000",
     currentPoint: "0",
     currentItem: "0",
+    staminaList: [19, 18, 17, 16, 15, 14, 13, 12, 11, 10],
+    scaleList: {
+      normal: [{ text: "1倍", value: 1 }, { text: "2倍", value: 2 }],
+      event: [{ text: "1倍", value: 1 }, { text: "2倍", value: 2 }, { text: "4倍", value: 4 }]
+    },
+    scoreList: ["S", "A", "B", "C"],
+    minutesList: [1, 2, 3, 4],
+    secondsList: [],
+    selected: {
+      normal: {
+        stamina: 19,
+        scale: 1,
+        score: "S"
+      },
+      event: {
+        difficulty: "MASTER",
+        scale: 1,
+        score: "S"
+      },
+      playTime: {
+        minutes: 4,
+        seconds: 0
+      }
+    },
     requireLiveNum: {
       normal: "",
       event: ""
@@ -181,6 +205,11 @@ var app = new Vue({
     requireEventItemNum: "",
     requireStamina: "",
     requireTime: ""
+  },
+  created: function created() {
+    for (var i = 0; i < MINUTE; i++) {
+      this.secondsList.push(i);
+    }
   },
   watch: {
     finishPoint: function finishPoint() {
@@ -211,7 +240,12 @@ var app = new Vue({
       this.requireEventItemNum = this.requireLiveNum.event * USE_ITEM;
       this.requireStamina = this.requireLiveNum.normal * USE_STAMINA;
       this.requireTime = calcData.calcRequireTime(this.requireLiveNum, LIVE_TIME_SECOND);
-    }
+
+      console.log(this.selected.normal.stamina, this.selected.normal.scale, this.selected.normal.score);
+      console.log(this.selected.event.difficulty, this.selected.event.scale, this.selected.event.score);
+      console.log(this.selected.playTime.minutes, this.selected.playTime.seconds);
+    },
+    calcGetPoint: function calcGetPoint() {}
   }
 });
 
