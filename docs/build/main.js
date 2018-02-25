@@ -170,7 +170,7 @@ var app = new Vue({
   el: "#app",
   data: {
     enabledCalcButton: true,
-    displayedOption: false,
+    displayedOption: true,
     finishPoint: "18000",
     currentPoint: "0",
     currentItem: "0",
