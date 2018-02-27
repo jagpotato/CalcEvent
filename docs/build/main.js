@@ -155,17 +155,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var MIN_INPUT = 0;
 var MAX_INPUT = 9999999999;
 
-var GET_POINT_EVENTLIVE = 320;
-var GET_POINT_NORMALLIVE = 53;
-var GET_ITEM = 53;
-var USE_ITEM = 150;
-var USE_STAMINA = 19;
-var LIVE_TIME_SECOND = 180;
-
-// const MINUTE = 60;
-// const HOUR = MINUTE * 60;
-// const DAY = HOUR * 24;
-
 var app = new Vue({
   el: "#app",
   data: {
