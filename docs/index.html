@@ -79,12 +79,12 @@
                   <div class="level-item">
                     <div class="field">
                       <div class="control">
-                        <button id="calc-button" class="button is-link is-medium" v-bind:disabled="!enabledCalcButton" v-on:click="calc">
+                        <a id="calc-button" class="button is-link is-medium" v-on:click="calc">
                           <span>計算</span>
                           <span class="icon is-small">
                             <i class="fas fa-calculator"></i>
                           </span>
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -146,8 +146,7 @@
                         <div class="control">
                           <div class="select is-small">
                             <select v-model="selected.event.difficulty">
-                              <option>MASTER+</option>
-                              <option>MASTER</option>
+                              <option>MASTER/MASTER+</option>
                               <option>PRO</option>
                               <option>REGULAR</option>
                               <option>DEBUT</option>
@@ -219,11 +218,11 @@
               <table class="table is-striped is-hoverable is-fullwidth">
                 <tbody>
                   <tr>
-                    <th>通常ライブ数</th>
+                    <th>必要通常ライブ数</th>
                     <td v-text="requireLiveNum.normal"></td>
                   </tr>
                   <tr>
-                    <th>イベントライブ数</th>
+                    <th>必要イベントライブ数</th>
                     <td v-text="requireLiveNum.event"></td>
                   </tr>
                   <tr>
