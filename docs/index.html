@@ -7,6 +7,7 @@
     <title>デレステ イベント計算機（アタポン形式）</title>
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   </head>
   <body>
@@ -16,12 +17,25 @@
           <h1 class="navbar-item is-hidden-desktop title is-4">
             イベント計算機
           </h1>
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/jagpotato/calc-event" target="_blank">
+            <span class="icon">
+              <i class="fab fa-github fa-2x"></i>
+            </span>
+          </a>
+          
         </div>
         <div class="navbar-menu">
           <div class="navbar-start">
             <h1 class="navbar-item title is-4">
               デレステ イベント計算機（アタポン形式）
             </h1>
+          </div>
+          <div class="navbar-end">
+            <a class="navbar-item" href="https://github.com/jagpotato/calc-event" target="_blank">
+              <span class="icon">
+                <i class="fab fa-github fa-2x"></i>
+              </span>
+            </a>
           </div>
         </div>
       </nav>
@@ -47,15 +61,155 @@
                   <input class="input" type="number" v-model="currentItem">
                 </div>
               </div>
-              <div class="field">
-                <div class="control">
-                  <div class="buttons has-addons is-right">
-                    <button id="calc-button" class="button is-link is-medium" v-bind:disabled="disabledCalcButton" v-on:click="calc">
-                      <span>計算</span>
-                      <span class="icon is-small">
-                        <i class="fas fa-calculator"></i>
-                      </span>
-                    </button>
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item">
+                    <div class="field">
+                      <div class="control">
+                        <a id="option-button" class="button is-medium" v-on:click="toggleOption">
+                          <span class="icon">
+                            <i class="fas fa-bars"></i>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <div class="field">
+                      <div class="control">
+                        <a id="calc-button" class="button is-link is-medium" v-on:click="calc">
+                          <span>計算</span>
+                          <span class="icon is-small">
+                            <i class="fas fa-calculator"></i>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="option-settings" v-show="displayedOption" v-cloak>
+                <div class="box">
+                  <h2 class="title is-6">通常ライブ</h2>
+                  <div class="level is-mobile">
+                    <div class="level-item">
+                      <div class="field">
+                        <label class="label is-small">スタミナ消費</label>
+                        <div class="control">
+                          <div class="select is-small">
+                            <select v-model="selected.normal.stamina">
+                              <option v-for="stamina in staminaList" v-bind:value="stamina">
+                                {{ stamina }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="field">
+                        <label class="label is-small">消費倍率</label>
+                        <div class="control">
+                          <div class="select is-small">
+                            <select v-model="selected.normal.scale">
+                              <option v-for="scaleNormal in scaleList.normal" v-bind:value="scaleNormal.value">
+                                {{ scaleNormal.text }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="field">
+                        <label class="label is-small">スコア</label>
+                        <div class="control">
+                          <div class="select is-small">
+                            <select v-model="selected.normal.score">
+                              <option v-for="score in scoreList" v-bind:value="score">
+                                {{ score }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2 class="title is-6">イベントライブ</h2>
+                  <div class="level is-mobile">
+                    <div class="level-item">
+                      <div class="field">
+                        <label class="label is-small">難易度</label>
+                        <div class="control">
+                          <div class="select is-small">
+                            <select v-model="selected.event.difficulty">
+                              <option>MASTER/MASTER+</option>
+                              <option>PRO</option>
+                              <option>REGULAR</option>
+                              <option>DEBUT</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="field">
+                        <label class="label is-small">消費倍率</label>
+                        <div class="control">
+                          <div class="select is-small">
+                            <select v-model="selected.event.scale">
+                              <option v-for="scaleEvent in scaleList.event" v-bind:value="scaleEvent.value">
+                                {{ scaleEvent.text }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="field">
+                        <label class="label is-small">スコア</label>
+                        <div class="control">
+                          <div class="select is-small">
+                            <select v-model="selected.event.score">
+                              <option v-for="score in scoreList" v-bind:value="score">
+                                {{ score }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2 class="title is-6">1曲のプレイ時間</h2>
+                  <div class="field has-addons has-addons-centered">
+                    <div class="control">
+                      <div class="select is-small">
+                        <select v-model="selected.playTime.minutes">
+                          <option v-for="minutes in minutesList" v-bind:value="minutes">
+                            {{ minutes }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="control">
+                      <a class="button is-static is-small">分</a>
+                    </div>
+                    <div class="control">
+                      <div class="select is-small">
+                        <select v-model="selected.playTime.seconds">
+                          <option v-for="seconds in secondsList" v-bind:value="seconds">
+                            {{ seconds }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="control">
+                      <a class="button is-static is-small">秒</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -64,11 +218,11 @@
               <table class="table is-striped is-hoverable is-fullwidth">
                 <tbody>
                   <tr>
-                    <th>通常ライブ数</th>
+                    <th>必要通常ライブ数</th>
                     <td v-text="requireLiveNum.normal"></td>
                   </tr>
                   <tr>
-                    <th>イベントライブ数</th>
+                    <th>必要イベントライブ数</th>
                     <td v-text="requireLiveNum.event"></td>
                   </tr>
                   <tr>
