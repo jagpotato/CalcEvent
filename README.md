@@ -5,7 +5,8 @@
 URL: https://jagpotato.github.io/calc-event/
 
 ## 使い方
-1. 最終的に獲得したいイベントポイント「目標ポイント」，現在獲得しているイベントポイント「累計ポイント」，現在所持しているイベントアイテム「所持アイテム」を入力してください．  
+
+1. 「目標ポイント」，「累計ポイント」，「所持アイテム」を入力してください．「目標ポイント」は最終的に獲得したいイベントポイント，「累計ポイント」は現在獲得しているイベントポイント，「所持アイテム」は現在所持しているイベントアイテムです．  
 
 ![ss1](https://user-images.githubusercontent.com/15711514/36797000-43a20574-1cea-11e8-9604-69089fe65c11.PNG)  
 
@@ -15,4 +16,4 @@ URL: https://jagpotato.github.io/calc-event/
 
 3. 「計算」ボタンを押すと表に各計算結果が表示されます．  
 
-![ss3](https://user-images.githubusercontent.com/15711514/36797062-6abb8982-1cea-11e8-91a8-0931fa1ed8c4.PNG)    
+![ss3](https://user-images.githubusercontent.com/15711514/36797062-6abb8982-1cea-11e8-91a8-0931fa1ed8c4.PNG)  
