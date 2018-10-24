@@ -17,3 +17,7 @@ URL: https://jagpotato.github.io/calc-event/
 3. 「計算」ボタンを押すと表に各計算結果が表示されます．  
 
 ![ss3](https://user-images.githubusercontent.com/15711514/36797062-6abb8982-1cea-11e8-91a8-0931fa1ed8c4.PNG)  
+
+## アップデート
+### v1.1.0  
+スタミナ消費2倍の通常ライブにおいて，獲得イベントアイテム数とともに，獲得イベントポイントも2倍で計算されていた箇所を修正

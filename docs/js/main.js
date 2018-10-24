@@ -76,40 +76,35 @@ const app = new Vue({
         throw new Error("数値は" + MIN_INPUT + "以上で入力してください");
       }
 
-      let normalLivePoint = this.calcGetPointNormal(this.selected.normal.stamina, this.selected.normal.scale, this.selected.normal.score);
+      let getItem = this.calcGetItem(this.selected.normal.stamina, this.selected.normal.scale, this.selected.normal.score);
+      let normalLivePoint = getItem / this.selected.normal.scale;
       let eventLivePoint = this.calcGetPointEvent(this.selected.event.difficulty, this.selected.event.scale, this.selected.event.score);
-      let getItem = normalLivePoint;
       let useItem = this.useItemList[this.selected.event.difficulty] * this.selected.event.scale;
-      
+
       let calcData = new Calc({normal: normalLivePoint, event: eventLivePoint}, {get: getItem, use: useItem});
       this.requireLiveNum = calcData.calcRequireLiveNum(this.finishPoint, this.currentPoint, this.currentItem);      
       this.requireEventItemNum = this.requireLiveNum.event * useItem;
       this.requireStamina = this.requireLiveNum.normal * this.selected.normal.stamina * this.selected.normal.scale;
-      this.requireTime = calcData.calcRequireTime(this.requireLiveNum, this.selected.playTime.minutes * 60 + this.selected.playTime.seconds);
-    
-      // console.log(this.selected.normal.stamina, this.selected.normal.scale, this.selected.normal.score);
-      // console.log(this.selected.event.difficulty, this.selected.event.scale, this.selected.event.score);
-      // console.log(this.selected.playTime.minutes, this.selected.playTime.seconds);
-      
+      this.requireTime = calcData.calcRequireTime(this.requireLiveNum, this.selected.playTime.minutes * 60 + this.selected.playTime.seconds);      
     },
-    calcGetPointNormal: function(useStamina, scale, score) {
-      let pointS = Math.ceil(useStamina * 3.1 - 6.5);
+    calcGetItem: function(useStamina, scale, score) {
+      let itemS = Math.ceil(useStamina * 3.1 - 6.5);
       switch ( score ) {
-        case "S": 
-        return pointS * scale;
+        case "S":
+        return itemS * scale;
         break;
-        case "A": 
-        return Math.ceil(pointS * 0.95) * scale;
+        case "A":
+        return Math.ceil(itemS * 0.95) * scale;
         break;
-        case "B": 
-        return Math.ceil(pointS * 0.90) * scale;
+        case "B":
+        return Math.ceil(itemS * 0.90) * scale;
         break;
-        case "C": 
-        return Math.ceil(pointS * 0.85) * scale;
+        case "C":
+        return Math.ceil(itemS * 0.85) * scale;
         break;
         default: break;
       }
-    }, 
+    },
     calcGetPointEvent: function(difficulty, scale, score) {
       const EVENTLIVE_POINT = {
         "MASTER/MASTER+": { "S": 320, "A": 304, "B": 288, "C": 272 },

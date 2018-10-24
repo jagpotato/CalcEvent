@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = {
+  mode: 'development',
   entry: {
       main: "./docs/js/main.js",
       calc: "./docs/js/calc.js"
@@ -10,8 +11,18 @@ module.exports = {
       filename: "[name].js"
   },
   module: {
-      loaders: [
-          {test: /\.js$/, loader: "babel-loader"}
-      ]
+    //   loaders: [
+    //       {test: /\.js$/, loader: "babel-loader"}
+    //   ]
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: ['env']
+        }
+      }]
+    }]
   }
 };
